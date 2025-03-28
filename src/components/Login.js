@@ -42,7 +42,6 @@ const name=useRef(null);
       setErrorMessage(error.message)
       // ...
     });
-    console.log(user);
    
     // ...
   })
