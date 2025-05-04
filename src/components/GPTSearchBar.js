@@ -54,13 +54,15 @@ const GPTSearchBar = () => {
 
       const movieNames = mockGptResults.choices[0].message.content.split(',').map(movie => movie.trim());
 
+      console.log(movieNames)
+
       // Search each movie in TMDB
       const tmdbPromises = movieNames.map((movie) => searchMovieInTmdb(movie));
       const tmdbResults = await Promise.all(tmdbPromises);
 
       console.log('TMDB Results:', tmdbResults);
 
-      dispatch(addGptMovieResult(tmdbResults))
+      dispatch(addGptMovieResult({tmdbResults:tmdbResults,movieResults:movieNames}))
     } catch (error) {
       console.error('Error fetching GPT or TMDB results:', error);
     }
